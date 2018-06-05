@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/sean-charboneau/apponboard/issues"
   },
-  "homepage": "https://github.com/sean-charboneau/apponboard#readme"
+  "homepage": "https://github.com/sean-charboneau/apponboard#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "db-migrate": "^0.11.1",
+    "db-migrate-mysql": "^1.1.10",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0"
+  }
 }
