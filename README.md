@@ -6,6 +6,7 @@ Then run:
 
 ```
 git clone https://github.com/sean-charboneau/apponboard.git
+cd apponboard
 npm install
 db-migrate up
 node start.js
