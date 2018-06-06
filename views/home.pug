@@ -1,0 +1,162 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css')
+        script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js')
+        script(src='/js/home.js')
+
+        title= `${title}`
+
+    body
+        .container
+            .row
+                .col-md
+                    h2(data-bind='text: zooName')
+
+            .row
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Staff List
+                            p.card-text
+                                ul(data-bind='foreach: staffList')
+                                    li(data-bind='text: $data.name')
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title
+                                span Animal List
+                                a(data-toggle="modal" data-target="#addAnimalModal" href='#' style='color: green; margin-left: 20px;') +
+                            p.card-text
+                                div(data-bind='foreach: animalList')
+                                    .row(style='font-size: 24px;')
+                                        a(data-bind='click: $parent.removeAnimal' href='#' style='color: red; margin-right: 10px;') x
+                                        span(data-bind='text: $data.name')
+            .row
+                .col-md
+                    h3 Schedule
+
+            .row
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Monday
+                            p.card-text
+                                span Hours:
+                                br
+                                span(data-bind='text: mondayOpen')
+                                span - 
+                                span(data-bind='text: mondayClose')
+                                br
+                                h5 Employees
+                                ul(data-bind='foreach: mondayEmployees')
+                                    li(data-bind='text: $data')
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Tuesday
+                            p.card-text
+                                span Hours:
+                                br
+                                span(data-bind='text: tuesdayOpen')
+                                span - 
+                                span(data-bind='text: tuesdayClose')
+                                br
+                                h5 Employees
+                                ul(data-bind='foreach: tuesdayEmployees')
+                                    li(data-bind='text: $data')
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Wednesday
+                            p.card-text
+                                span Hours:
+                                br
+                                span(data-bind='text: wednesdayOpen')
+                                span - 
+                                span(data-bind='text: wednesdayClose')
+                                br
+                                h5 Employees
+                                ul(data-bind='foreach: wednesdayEmployees')
+                                    li(data-bind='text: $data')
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Thursday
+                            p.card-text
+                                span Hours:
+                                br
+                                span(data-bind='text: thursdayOpen')
+                                span - 
+                                span(data-bind='text: thursdayClose')
+                                br
+                                h5 Employees
+                                ul(data-bind='foreach: thursdayEmployees')
+                                    li(data-bind='text: $data')
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Friday
+                            p.card-text
+                                span Hours:
+                                br
+                                span(data-bind='text: fridayOpen')
+                                span - 
+                                span(data-bind='text: fridayClose')
+                                br
+                                h5 Employees
+                                ul(data-bind='foreach: fridayEmployees')
+                                    li(data-bind='text: $data')
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Saturday
+                            p.card-text
+                                span Hours:
+                                br
+                                span(data-bind='text: saturdayOpen')
+                                span - 
+                                span(data-bind='text: saturdayClose')
+                                br
+                                h5 Employees
+                                ul(data-bind='foreach: saturdayEmployees')
+                                    li(data-bind='text: $data')
+                .col-md
+                    .card
+                        .card-body
+                            h4.card-title Sunday
+                            p.card-text
+                                span Hours:
+                                br
+                                span(data-bind='text: sundayOpen')
+                                span - 
+                                span(data-bind='text: sundayClose')
+                                br
+                                h5 Employees
+                                ul(data-bind='foreach: sundayEmployees')
+                                    li(data-bind='text: $data')
+
+    #addAnimalModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addAnimalModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#addAnimalModalLabel.modal-title Enter animal name
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                .modal-body
+                    input.form-control(type='text' data-bind='value: animalName')
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    button.btn.btn-primary(type='button', data-dismiss='modal' data-bind='click: addAnimal') Save changes
+
+
+
+
+    script.
+        var vm = new HomeViewModel();
+        $(document).ready(function() {
+            ko.applyBindings(vm);
+        });
