@@ -4,7 +4,9 @@ Create a local database on localhost:3306 called zoo_db.  The db should have a u
 
 Then run:
 
+```
 git clone https://github.com/sean-charboneau/apponboard.git
 npm install
 db-migrate up
 node start.js
+```
